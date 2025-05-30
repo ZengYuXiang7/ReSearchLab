@@ -2,8 +2,8 @@
 # Author : Yuxiang Zeng
 # 每次开展新实验都改一下这里
 from exp.exp_base import BasicModel
+from modules.TS.ts import TimeSeriesModel
 from modules.ntc import NTC
-from modules.ts import TimeSeriesModel
 
 
 class Model(BasicModel):
@@ -14,10 +14,16 @@ class Model(BasicModel):
         self.input_size = 1
         self.hidden_size = config.rank
 
-        if config.model == 'NTC':
+        if config.task == 'NTC':
             self.model = NTC(self.input_size, config)
 
-        elif config.model == 'TS':
+        elif config.task == 'TS':
+            self.model = TimeSeriesModel(self.input_size, config)
+
+        elif config.task == 'AD':
+            self.model = TimeSeriesModel(self.input_size, config)
+
+        elif config.task == 'Recsys':
             self.model = TimeSeriesModel(self.input_size, config)
 
         else:

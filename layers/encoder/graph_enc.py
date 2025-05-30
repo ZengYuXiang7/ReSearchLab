@@ -17,7 +17,8 @@ def get_norm(d_model, method):
         return torch.nn.LayerNorm(d_model)
     elif method == 'rms':
         return torch.nn.RMSNorm(d_model)
-
+    else:
+        raise NotImplementedError
 
 def get_ffn(d_model, method):
     if method == 'ffn':
@@ -25,7 +26,8 @@ def get_ffn(d_model, method):
     elif method == 'moe':
         return MoE(d_model=d_model, d_ff=d_model, num_m=1, num_router_experts=8, num_share_experts=1, num_k=2,
                    loss_coef=0.001)
-
+    else:
+        raise NotImplementedError
 
 def get_gcn(d_model, method):
     if method == 'gcn':
@@ -36,7 +38,8 @@ def get_gcn(d_model, method):
         return GATConv(d_model, d_model, 4, 0)
     elif method == 'gin':
         return GINConv(GINMLP(d_model, d_model), 'sum')
-
+    else:
+        raise NotImplementedError
 
 class GnnFamily(torch.nn.Module):
     def __init__(self, d_model, order, gcn_method, norm_method, ffn_method):

@@ -1,5 +1,6 @@
 # coding : utf-8
 # Author : Yuxiang Zeng
+# 注意，这里的代码已经几乎完善，非必要不要改动（2025年05月30日22:24:29）
 
 import os
 import torch

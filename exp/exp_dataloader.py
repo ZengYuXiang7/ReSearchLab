@@ -14,6 +14,11 @@ def load_data(config):
     if config.dataset == 'NTC':
         all_x, all_y, scaler = get_tensor(config.dataset, config)
 
+    if config.dataset == 'Recsys':
+        all_x, all_y, scaler = get_tensor(config.dataset, config)
+
+    if config.dataset == 'AD':
+        all_x, all_y, scaler = get_tensor(config.dataset, config)
     return all_x, all_y, scaler
 
 # 数据集定义

@@ -27,7 +27,7 @@ class BaseModelConfig:
 @dataclass
 class DatasetInfo:
     path: str = './datasets/'
-    dataset: str = 'TimeSeries'
+    dataset: str = 'TS'
     train_size: int = 500
     use_train_size: bool = False
     density: float = 0.70

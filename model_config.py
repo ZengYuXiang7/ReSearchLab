@@ -13,8 +13,9 @@ class OtherConfig:
 
 @dataclass
 class TimeSeriesConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
+    task: str = 'TS'
     model: str = 'TS'
-    dataset: str = 'TS'  # financial  TimeSeries
+    dataset: str = 'TS'  # financial  TS
     seq_len: int = 96
     pred_len: int = 96
     ts_var: int = 0
@@ -39,6 +40,7 @@ class TimeSeriesConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetI
 
 @dataclass
 class NTCConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
+    task: str = 'NTC'
     model: str = 'NTC'
     dataset: str = 'NTC'
     density: float = 0.10
@@ -59,3 +61,46 @@ class NTCConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, Tr
     idx: int = 0
 
 
+@dataclass
+class ADConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
+    model: str = 'NTC'
+    dataset: str = 'NTC'
+    density: float = 0.10
+
+    bs: int = 256
+    rank: int = 40
+    epochs: int = 100
+    loss_func: str = 'CrossEntropyLoss'  # # L1Loss  MSELoss
+    patience: int = 10
+    verbose: int = 1
+    shuffle: bool = True
+    scaler_method: str = 'minmax'
+
+    # 组件专区
+    num_nodes: int = 12
+    num_slots: int = 48000
+    window: int = 48
+    idx: int = 0
+
+
+
+@dataclass
+class RecsysConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
+    model: str = 'NTC'
+    dataset: str = 'NTC'
+    density: float = 0.10
+
+    bs: int = 256
+    rank: int = 40
+    epochs: int = 100
+    loss_func: str = 'CrossEntropyLoss'  # L1Loss  MSELoss
+    patience: int = 10
+    verbose: int = 1
+    shuffle: bool = True
+    scaler_method: str = 'minmax'
+
+    # 组件专区
+    num_nodes: int = 12
+    num_slots: int = 48000
+    window: int = 48
+    idx: int = 0

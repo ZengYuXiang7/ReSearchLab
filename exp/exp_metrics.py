@@ -6,7 +6,6 @@ import numpy as np
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
 
-
 def ErrorMetrics(realVec, estiVec, config):
     """ 根据任务类型选择合适的误差计算方式 """
     if isinstance(realVec, np.ndarray):
@@ -63,3 +62,5 @@ def compute_classification_metrics(realVec, estiVec):
         'RC': RC,
         'F1': F1,
     }
+
+

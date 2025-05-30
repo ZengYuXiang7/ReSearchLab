@@ -26,6 +26,7 @@ def get_ts(dataset, config):
     # 根据训练集对input进行特征归一化
     scaler = get_scaler(y, config)
     y = scaler.transform(y)
+
     # x = scaler.transform(x)
     x[:, -1] = x[:, -1].astype(np.float32)
     temp = x[:, -1].astype(np.float32)

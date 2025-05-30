@@ -83,5 +83,5 @@ if __name__ == '__main__':
     # Experiment Settings, logger, plotter
     from utils.exp_config import get_config
     # config = get_config('TimeSeriesConfig')
-    config = get_config('NTCConfig')
+    config = get_config()
     run(config)
