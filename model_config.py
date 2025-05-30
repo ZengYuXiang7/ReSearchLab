@@ -13,8 +13,6 @@ class OtherConfig:
     seq_len: int = 24
     pred_len: int = 10
     ts_var: int = 0
-    # start_date: str = '2022-07-13'
-    # end_date: str = '2023-07-13'
 
     start_date: str = '2020-05-15'
     end_date: str = '2025-05-15'
@@ -33,9 +31,7 @@ class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
     epochs: int = 200
     loss_func: str = 'MSELoss'  # L1Loss  MSELoss
     patience: int = 45
-    verbose: int = 5
-    try_exp: int = 1
-    dataset: str = 'financial'  # financial  weather
+    dataset: str = 'TimeSeries'  # financial  TimeSeries
     multi_dataset: bool = True
 
     seq_len: int = 32
@@ -53,28 +49,25 @@ class TestConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, T
 
 
 @dataclass
-class TimeSeriesConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
-    model: str = 'ours'
-    bs: int = 32
-    rank: int = 56
-    epochs: int = 200
+class NTCConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
+    model: str = 'NTC'
+    dataset: str = 'NTC'
+    density: float = 0.10
+
+    bs: int = 256
+    rank: int = 40
+    epochs: int = 100
     loss_func: str = 'MSELoss'  # L1Loss  MSELoss
-    patience: int = 45
-    verbose: int = 5
-    try_exp: int = 1
-    dataset: str = 'weather'  # financial  weather
-    multi_dataset: bool = False
+    patience: int = 10
+    verbose: int = 1
+    shuffle: bool = True
+    scaler_method: str = 'minmax'
 
     # 组件专区
-    num_layers: int = 2
-    norm_method: str = 'rms'
-    ffn_method: str = 'ffn'
-    att_method: str = 'self'
-    dis_method: str = 'cosine'
-    fft: bool = False
-    revin: bool = False
+    num_nodes: int = 12
+    num_slots: int = 48000
+    window: int = 48
     idx: int = 0
-
 
 
 @dataclass
@@ -146,7 +139,7 @@ class TimeLLMConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo
     n_heads: int = 8
     enc_in:int = 7
     dropout: float = 0.1
-    dataset: str = "weather"
+    dataset: str = "TimeSeries"
 
 
 @dataclass

@@ -1,24 +1,19 @@
 # coding : utf-8
 # Author : Yuxiang Zeng
 from exp.exp_dataset import TensorDataset, TimeSeriesDataset
-from modules.load_data.generate_financial import generate_data
-from modules.load_data.get_financial import get_financial_data, multi_dataset
-from modules.load_data.get_lottery import get_lottery
+from modules.load_data.get_ntc import get_tensor
 from modules.load_data.get_ts import get_ts
 from utils.data_dataloader import get_dataloaders
 from utils.data_spliter import get_split_dataset
 
 
 def load_data(config):
-    if config.dataset == 'financial':
-        if config.multi_dataset:
-            all_x, all_y, scaler = multi_dataset(config)
-        else:
-            all_x, all_y, scaler = get_financial_data(config.start_date, config.end_date, config.idx, config)
-    elif config.dataset == 'weather':
+    if config.dataset == 'TimeSeries':
         all_x, all_y, scaler = get_ts(config.dataset, config)
-    elif config.dataset == 'lottery':
-        all_x, all_y, scaler = get_lottery(config.dataset, config)
+
+    if config.dataset == 'NTC':
+        all_x, all_y, scaler = get_tensor(config.dataset, config)
+
     return all_x, all_y, scaler
 
 # 数据集定义
@@ -35,16 +30,18 @@ class DataModule:
         config.log.only_print(f'Train_length : {len(self.train_loader.dataset)} Valid_length : {len(self.valid_loader.dataset)} Test_length : {len(self.test_loader.dataset)}')
 
     def get_dataset(self, train_x, train_y, valid_x, valid_y, test_x, test_y, config):
-        if config.dataset == 'financial':
+        if config.dataset == 'NTC':
             return (
                 TensorDataset(train_x, train_y, 'train', config),
                 TensorDataset(valid_x, valid_y, 'valid', config),
                 TensorDataset(test_x, test_y, 'test', config)
             )
-        else:
+        elif config.dataset == 'TimeSeries':
             return (
                 TimeSeriesDataset(train_x, train_y, 'train', config),
                 TimeSeriesDataset(valid_x, valid_y, 'valid', config),
                 TimeSeriesDataset(test_x, test_y, 'test', config)
             )
+        else:
+            raise NotImplementedError
 

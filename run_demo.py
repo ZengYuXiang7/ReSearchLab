@@ -9,17 +9,6 @@ hyper_dict = {
     'rounds': [1],
     'rank': [56],
     'num_layers': [1],
-    'pred_len': [96, 192, 336, 720],
-    # 'dataset': ['financial'],  # weather financial lottery
-    # 'att': ['self'],
-    # 'norm': ['rms'],
-    # 'ffn': ['moe'],
-    # 'loss_coef': [0.001],
-    # 'fft': [True],
-    # 'revin': [False],
-    'dis_method': ['cosine', None],  #
-    # 'dis_method': ['none', 'cosine', 'euclidean', 'manhattan', 'minkowski', 'linear', 'kl', 'mahalanobis' 'dtw'],  #
-    # 'idx': [i for i in range(33)]
 }
 
 ######################################################################################################
