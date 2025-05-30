@@ -13,8 +13,8 @@ class OtherConfig:
 
 @dataclass
 class TimeSeriesConfig(ExperimentConfig, BaseModelConfig, LoggerConfig, DatasetInfo, TrainingConfig, OtherConfig):
-    model: str = 'TimeSeries'
-    dataset: str = 'TimeSeries'  # financial  TimeSeries
+    model: str = 'TS'
+    dataset: str = 'TS'  # financial  TimeSeries
     seq_len: int = 96
     pred_len: int = 96
     ts_var: int = 0

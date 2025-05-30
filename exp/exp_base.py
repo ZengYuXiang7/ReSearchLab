@@ -60,7 +60,7 @@ class BasicModel(torch.nn.Module):
             preds.append(pred)
         reals = torch.cat(reals, dim=0)
         preds = torch.cat(preds, dim=0)
-        if self.config.dataset != 'TimeSeries':
+        if self.config.dataset != 'TS':
             reals, preds = dataModule.scaler.inverse_transform(reals), dataModule.scaler.inverse_transform(preds)
         if mode == 'valid':
             self.scheduler.step(val_loss)

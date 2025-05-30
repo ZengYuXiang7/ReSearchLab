@@ -8,7 +8,7 @@ from utils.data_scaler import get_scaler
 
 
 def get_ts(dataset, config):
-    df = pd.read_csv(f'./datasets/TimeSeries/weather.csv').to_numpy()
+    df = pd.read_csv(f'./datasets/TS/weather.csv').to_numpy()
     # x, y = df[:, 1:], df[:, -1]
     if config.ts_var == 1:
         x, y = df[:, 1:], df[:, -1]

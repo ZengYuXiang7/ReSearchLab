@@ -3,7 +3,7 @@
 # 每次开展新实验都改一下这里
 from exp.exp_base import BasicModel
 from modules.ntc import NTC
-from modules.ts_model import TimeSeriesModel
+from modules.ts import TimeSeriesModel
 
 
 class Model(BasicModel):
@@ -17,7 +17,7 @@ class Model(BasicModel):
         if config.model == 'NTC':
             self.model = NTC(self.input_size, config)
 
-        elif config.model == 'TimeSeries':
+        elif config.model == 'TS':
             self.model = TimeSeriesModel(self.input_size, config)
 
         else:

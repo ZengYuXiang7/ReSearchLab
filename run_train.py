@@ -12,17 +12,19 @@ torch.set_default_dtype(torch.float32)
 
 def get_experiment_name(config):
     log_filename = f'Model_{config.model}_Dataset_{config.dataset}_R{config.rank}'
-    if config.multi_dataset:
-        log_filename = f'Model_{config.model}_Dataset_{config.dataset}_Multi'
     exper_detail = (
-         f"Dataset : {config.dataset.upper()}, "
-         f"Model : {config.model}, "
-         f"Density : {config.density:.3f}, "
-         f"Bs : {config.bs}, "
-         f"Rank : {config.rank}, "
-         f"Seq_len : {config.seq_len}, "
-         f"Pred_len : {config.pred_len}, "
+        f"Dataset : {config.dataset.upper()}, "
+        f"Model : {config.model}, "
+        f"Density : {config.density:.3f}, "
+        f"Bs : {config.bs}, "
+        f"Rank : {config.rank}, "
     )
+
+    if config.dataset == "TS":
+        exper_detail += (
+            f"Seq_len : {config.seq_len}, "
+            f"Pred_len : {config.pred_len}, "
+        )
     return log_filename, exper_detail
 
 

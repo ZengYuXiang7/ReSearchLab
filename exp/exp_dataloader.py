@@ -8,7 +8,7 @@ from utils.data_spliter import get_split_dataset
 
 
 def load_data(config):
-    if config.dataset == 'TimeSeries':
+    if config.dataset == 'TS':
         all_x, all_y, scaler = get_ts(config.dataset, config)
 
     if config.dataset == 'NTC':
@@ -36,7 +36,7 @@ class DataModule:
                 TensorDataset(valid_x, valid_y, 'valid', config),
                 TensorDataset(test_x, test_y, 'test', config)
             )
-        elif config.dataset == 'TimeSeries':
+        elif config.dataset == 'TS':
             return (
                 TimeSeriesDataset(train_x, train_y, 'train', config),
                 TimeSeriesDataset(valid_x, valid_y, 'valid', config),
